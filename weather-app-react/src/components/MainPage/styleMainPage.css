@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 992px;
+  margin: 0 auto;
+}
+
+.background {
+  background-image: url("https://www-cdn.eumetsat.int/files/2020-06/ASpot_Weather.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.titleDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.bigTitle {
+  color: white;
+  margin-top: 1.5rem;
+}
