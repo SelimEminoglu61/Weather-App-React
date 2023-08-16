@@ -1,3 +1,4 @@
+import SearchBar from "../SearchBar/SearchBar";
 import "./styleMainPage.css";
 
 function MainPage() {
@@ -7,6 +8,7 @@ function MainPage() {
         <div className="titleDiv">
           <h1 className="bigTitle">Hava Durumu Uygulaması</h1>
         </div>
+        <SearchBar />
       </div>
     </div>
   );
