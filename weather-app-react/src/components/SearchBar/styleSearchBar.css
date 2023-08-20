@@ -33,4 +33,9 @@
   background-color: rgb(59, 112, 226);
   color: white;
   font-size: 14pt;
+  cursor: pointer;
+}
+
+.inputBtn:hover {
+  background-color: rgb(28, 78, 185);
 }

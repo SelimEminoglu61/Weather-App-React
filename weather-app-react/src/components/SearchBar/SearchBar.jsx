@@ -8,16 +8,15 @@ function SearchBar() {
     setCity(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCity("");
+  };
+
   return (
-    <form
-      onSubmit={() => {
-        e.preventDefault();
-        setCity("");
-      }}
-      className="cityForm"
-    >
+    <form onSubmit={(e) => handleSubmit(e)} className="cityForm">
       <input
-        placeholder="Aramak istediğiniz il ismini giriniz"
+        placeholder="Search City What You Want To Learn Weather"
         className="inputCity"
         value={city}
         onChange={(e) => {
@@ -25,7 +24,7 @@ function SearchBar() {
         }}
       />
       <button type="submit" className="inputBtn">
-        Hava Durumunu Göster
+        Show Weather
       </button>
     </form>
   );

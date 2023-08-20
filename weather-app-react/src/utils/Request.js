@@ -1,14 +1,17 @@
 import axios from "axios";
 
-function getBigCity(city) {
-  const axios = require("axios");
+const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 
-  let weatherİnfo;
-  axios
-    .get(
-      `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${city}&aqi=no`
-    )
-    .then((response) => (response = weatherİnfo));
+async function getBigCity(city) {
+  try {
+    const response = await axios.get(
+      `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`
+    );
 
-  return weatherİnfo;
+    return response.data;
+  } catch (err) {
+    return err;
+  }
 }
+
+export default getBigCity;
