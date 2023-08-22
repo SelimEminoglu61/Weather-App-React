@@ -16,7 +16,7 @@ function SearchBar() {
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="cityForm">
       <input
-        placeholder="Search City What You Want To Learn Weather"
+        placeholder="Search City"
         className="inputCity"
         value={city}
         onChange={(e) => {
