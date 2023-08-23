@@ -1,0 +1,38 @@
+.citiesDiv {
+  border: 2px solid rgb(155, 51, 51);
+  border-radius: 10px;
+  padding: 1em 2em;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.midDiv {
+  margin-top: 0.5rem;
+}
+
+.detailBtn {
+  border: 1px solid rgb(58, 118, 197);
+  border-radius: 20px;
+  background-color: rgb(38, 38, 214);
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.detailBtn:hover {
+  background-color: rgb(29, 29, 167);
+}
+
+.conditionWeather {
+  font-size: 14pt;
+}
+
+.temperature {
+  font-weight: 600;
+}
+
+.weatherIcon {
+  width: 100px;
+}

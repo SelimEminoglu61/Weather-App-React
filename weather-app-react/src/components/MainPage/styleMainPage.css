@@ -19,7 +19,6 @@
   /* background-image: url("https://www-cdn.eumetsat.int/files/2020-06/ASpot_Weather.jpg");
   background-size: cover;
   background-position: center; */
-  min-height: 100vh;
 }
 
 .titleDiv {
@@ -33,5 +32,14 @@
 }
 
 .bigCities {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
+}
+
+.cities {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }

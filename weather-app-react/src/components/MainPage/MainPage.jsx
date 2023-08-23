@@ -33,17 +33,19 @@ function MainPage() {
         <SearchBar />
         <div className="bigCities">
           <h2>Turkey Big Cities's Weather</h2>
-          {turkCityData.map((city, i) => (
-            <BigCities city={city} key={i} />
-          ))}
+          <div className="cities">
+            {turkCityData.map((city, i) => (
+              <BigCities city={city} key={i} />
+            ))}
+          </div>
         </div>
         <div className="bigCities">
           <h2>Big Cities's Weather On World</h2>
-          {cityData.map((city, i) => (
-            <div key={i}>
-              <h2>{city.location.name}</h2>
-            </div>
-          ))}
+          <div className="cities">
+            {cityData.map((city, i) => (
+              <BigCities city={city} key={i} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
