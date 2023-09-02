@@ -2,11 +2,28 @@ import "./styleBigCities.css";
 import PropTypes from "prop-types";
 
 function BigCities({ city }) {
+  function getSmallCountry(country) {
+    let newArr = [];
+    let countries = country.split(" ");
+
+    countries.map((item) => {
+      if (item[0] === item[0].toUpperCase()) {
+        newArr.push(item[0]);
+      }
+    });
+    let response = newArr.join("");
+    return response;
+  }
+
   return (
     <div className="citiesDiv">
       <h3>{city.location.name}</h3>
-      <p>{city.location.country}</p>
-      <div className="midDiv">
+      <p className="countryText">
+        {city.location.country.length > 10
+          ? getSmallCountry(city.location.country)
+          : city.location.country}
+      </p>
+      <div>
         <p>Temperature:</p>
         <p className="temperature">{city.current.temp_c} C°</p>
       </div>
@@ -16,7 +33,7 @@ function BigCities({ city }) {
         alt="icon"
         className="weatherIcon"
       />
-      <div className="midDiv">
+      <div className="updateText">
         <p>Last Updated:</p>
         <p>{city.current.last_updated}</p>
       </div>

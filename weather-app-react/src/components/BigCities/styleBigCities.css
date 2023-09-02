@@ -5,10 +5,16 @@
   height: 360px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.midDiv {
-  margin-top: 0.5rem;
+.updateText {
+  height: 50px;
+}
+
+.countryText {
+  height: 30px;
+  width: 35px;
 }
 
 .detailBtn {
@@ -16,9 +22,10 @@
   border-radius: 20px;
   background-color: rgb(38, 38, 214);
   color: white;
+  width: 100px;
   cursor: pointer;
   padding: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .detailBtn:hover {
