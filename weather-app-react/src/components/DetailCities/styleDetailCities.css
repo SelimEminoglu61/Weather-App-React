@@ -1,0 +1,29 @@
+.detailDiv {
+  width: 100%;
+  border: 2px solid black;
+}
+
+.headlineDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headlineBtn {
+  background-color: rgb(221, 38, 38);
+  font-size: 18pt;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.3rem;
+  margin-top: 0.4rem;
+  color: white;
+}
+
+.headlineBtn:hover {
+  background-color: rgb(182, 32, 32);
+  cursor: pointer;
+}
+
+.headlineText {
+  color: rgb(52, 22, 185);
+}

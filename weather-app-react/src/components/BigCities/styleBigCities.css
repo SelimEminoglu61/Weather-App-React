@@ -26,6 +26,7 @@
   cursor: pointer;
   padding: 0.5rem;
   margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .detailBtn:hover {
@@ -34,6 +35,12 @@
 
 .conditionWeather {
   font-size: 14pt;
+  width: 105px;
+  height: 24px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .temperature {

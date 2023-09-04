@@ -1,7 +1,7 @@
 import "./styleBigCities.css";
 import PropTypes from "prop-types";
 
-function BigCities({ city }) {
+function BigCities({ city, setIsOpenDetail, setDetailCityData }) {
   function getSmallCountry(country) {
     let newArr = [];
     let countries = country.split(" ");
@@ -37,13 +37,23 @@ function BigCities({ city }) {
         <p>Last Updated:</p>
         <p>{city.current.last_updated}</p>
       </div>
-      <button className="detailBtn">Show Details</button>
+      <button
+        className="detailBtn"
+        onClick={() => {
+          setIsOpenDetail(true);
+          setDetailCityData(city);
+        }}
+      >
+        Show Details
+      </button>
     </div>
   );
 }
 
 BigCities.propTypes = {
   city: PropTypes.object.isRequired,
+  setIsOpenDetail: PropTypes.func,
+  setDetailCityData: PropTypes.func,
 };
 
 export default BigCities;

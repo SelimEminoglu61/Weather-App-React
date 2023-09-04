@@ -39,6 +39,7 @@
 
 .cities {
   margin-top: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   gap: 2rem;
