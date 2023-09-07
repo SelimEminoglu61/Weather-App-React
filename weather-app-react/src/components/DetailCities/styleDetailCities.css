@@ -26,4 +26,47 @@
 
 .headlineText {
   color: rgb(52, 22, 185);
+  margin-left: 2.3rem;
+  margin-top: 0.4rem;
+}
+
+.midDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tableDiv {
+  display: flex;
+  border: 1px solid black;
+
+  margin-bottom: 2rem;
+}
+
+.tableColumn {
+  min-width: 180px;
+}
+
+.border-right {
+  border-right: 2px solid black;
+}
+
+.row {
+  border-bottom: 1px solid black;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.none-border {
+  border-bottom: none;
+}
+
+.forecastDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+.forecartCard {
+  border: 1px solid rgb(197, 40, 40);
 }
