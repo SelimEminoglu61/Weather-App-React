@@ -15,6 +15,7 @@ function MainPage() {
   const [isOpenBigDetail, setIsOpenBigDetail] = useState(false);
   const [detailCityData, setDetailCityData] = useState({});
   const [detailBigCityData, setDetailBigCityData] = useState({});
+  const [searchCity, setSearchCity] = useState("");
 
   const fetchData = async () => {
     const data = await Promise.all(bigCities.map((city) => getBigCity(city)));
