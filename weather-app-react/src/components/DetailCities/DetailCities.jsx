@@ -15,7 +15,7 @@ function DetailCities({ detailCityData, setIsOpenDetail }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [detailCityData]);
 
   return (
     <div className="detailDiv">
@@ -50,7 +50,16 @@ function DetailCities({ detailCityData, setIsOpenDetail }) {
           {forecastCity.map((forecast) => {
             return (
               <div className="forecastCard" key={forecast.date_epoch}>
-                <p>{forecast.date}</p>
+                <p className="forecastText">Date:{forecast.date}</p>
+                <div className="forecastMidDiv">
+                  <img
+                    src={forecast.day.condition.icon}
+                    alt="logo"
+                    className="iconDetail"
+                  />
+                  <p className="forecastText">{forecast.day.avgtemp_c} C°</p>
+                  <p className="forecastText">{forecast.day.condition.text}</p>
+                </div>
               </div>
             );
           })}

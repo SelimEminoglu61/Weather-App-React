@@ -12,7 +12,9 @@ function MainPage() {
   const [cityData, setCityData] = useState([]);
   const [turkCityData, setTurkCityData] = useState([]);
   const [isOpenDetail, setIsOpenDetail] = useState(false);
+  const [isOpenBigDetail, setIsOpenBigDetail] = useState(false);
   const [detailCityData, setDetailCityData] = useState({});
+  const [detailBigCityData, setDetailBigCityData] = useState({});
 
   const fetchData = async () => {
     const data = await Promise.all(bigCities.map((city) => getBigCity(city)));
@@ -57,9 +59,20 @@ function MainPage() {
           <h2>Big Cities's Weather On World</h2>
           <div className="cities">
             {cityData.map((city, i) => (
-              <BigCities city={city} key={i} />
+              <BigCities
+                city={city}
+                key={i}
+                setIsOpenDetail={setIsOpenBigDetail}
+                setDetailCityData={setDetailBigCityData}
+              />
             ))}
           </div>
+          {isOpenBigDetail && (
+            <DetailCities
+              detailCityData={detailBigCityData}
+              setIsOpenDetail={setIsOpenBigDetail}
+            />
+          )}
         </div>
       </div>
     </div>
