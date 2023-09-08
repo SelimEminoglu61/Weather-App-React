@@ -1,0 +1,9 @@
+.searchDiv {
+  border: 3px solid rgb(30, 95, 216);
+  border-radius: 20px;
+  margin-top: 1.5rem;
+}
+
+.closeBtnDiv {
+  text-align: end;
+}

@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import BigCities from "../BigCities/BigCities";
 import getBigCity from "../../utils/Request";
 import DetailCities from "../DetailCities/DetailCities";
+import SearchTable from "../SearchTable/SearchTable";
 import "./styleMainPage.css";
 import "animate.css";
 
@@ -15,7 +16,8 @@ function MainPage() {
   const [isOpenBigDetail, setIsOpenBigDetail] = useState(false);
   const [detailCityData, setDetailCityData] = useState({});
   const [detailBigCityData, setDetailBigCityData] = useState({});
-  const [searchCity, setSearchCity] = useState("");
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [searchCity, setSearchCity] = useState({});
 
   const fetchData = async () => {
     const data = await Promise.all(bigCities.map((city) => getBigCity(city)));
@@ -30,13 +32,24 @@ function MainPage() {
     fetchData();
   }, []);
 
+  function getSearchCity(city) {
+    setSearchCity(getBigCity(city));
+    setIsOpenSearch(true);
+  }
+
   return (
     <div className="background">
       <div className="container">
         <div className="titleDiv animate__animated animate__fadeInDown">
           <h1 className="bigTitle">Weather Application</h1>
         </div>
-        <SearchBar />
+        <SearchBar getSearchCity={getSearchCity} />
+        {isOpenSearch && (
+          <SearchTable
+            searchCity={searchCity}
+            setIsOpenSearch={setIsOpenSearch}
+          />
+        )}
         <div className="bigCities">
           <h2>Turkey Big Cities's Weather</h2>
           <div className="cities">

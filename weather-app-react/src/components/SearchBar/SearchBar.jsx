@@ -1,7 +1,8 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./styleSearchBar.css";
 
-function SearchBar() {
+function SearchBar({ getSearchCity }) {
   const [city, setCity] = useState("");
 
   const handleChange = (e) => {
@@ -23,11 +24,21 @@ function SearchBar() {
           handleChange(e);
         }}
       />
-      <button type="submit" className="inputBtn">
+      <button
+        type="submit"
+        className="inputBtn"
+        onClick={() => {
+          getSearchCity("izmir");
+        }}
+      >
         Show Weather
       </button>
     </form>
   );
 }
+
+SearchBar.propTypes = {
+  getSearchCity: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
