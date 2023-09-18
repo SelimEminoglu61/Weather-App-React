@@ -1,8 +1,13 @@
-# React + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React İle Hava Durumu Uygulaması
 
-Currently, two official plugins are available:
+## Proje Amacı
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- API kullanarak bilgi alışverişi sağlamak.
+
+- CSS ile bileşenlere özellikler atamak.
+
+- Search işlemini gerçekleştirmek.
+
+Not: Ayrıca ChatGPT'nin önerdiği seviye 2 uygulamasıdır.
