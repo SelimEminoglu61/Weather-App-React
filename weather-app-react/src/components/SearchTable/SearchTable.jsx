@@ -21,11 +21,22 @@ function SearchTable({ searchCity, setIsOpenSearch }) {
             alt="logo"
           />
         </div>
-        <div className="rightSide">
+        <div className="midSide">
           <div className="infoDiv">
             <p>Temperature: {searchCity.current.temp_c} C°</p>
             <p>Station: {searchCity.current.condition.text}</p>
             <p>Last Updated: {searchCity.current.last_updated}</p>
+            <br />
+            <p>Feels Like: {searchCity.current.feelslike_c} C°</p>
+            <p>Wind Speed: {searchCity.current.wind_kph} kph</p>
+            <p>Wind Direction: {searchCity.current.wind_dir}</p>
+          </div>
+        </div>
+        <div className="rightSide">
+          <div className="infoDiv">
+            <p>Pressure: {searchCity.current.pressure_mb} mb</p>
+            <p>Humidity: {searchCity.current.humidity}%</p>
+            <p>Cloud: {searchCity.current.cloud}%</p>
           </div>
         </div>
       </div>
