@@ -1,8 +1,35 @@
+import { useState, useEffect } from "react";
+import getForecastCity from "../../utils/RequestForecast";
 import "./styleSearchTable.css";
 import "../DetailCities/styleDetailCities.css";
+import "../BigCities/styleBigCities.css";
 import PropTypes from "prop-types";
 
 function SearchTable({ searchCity, setIsOpenSearch }) {
+  const [isOpenDetail, setIsOpenDetail] = useState(false);
+  const [forecastCity, setForecastCity] = useState([]);
+
+  const fetchData = async () => {
+    const data = await getForecastCity(searchCity.location.name);
+    setForecastCity(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [searchCity]);
+
+  function detailButton() {
+    const button = document.getElementById("detailbutton");
+
+    if (isOpenDetail == false) {
+      setIsOpenDetail(true);
+      button.innerText = "Close Details";
+    } else {
+      setIsOpenDetail(false);
+      button.innerText = "Show Details";
+    }
+  }
+
   return (
     <div className="searchDiv">
       <div className="closeBtnDiv">
@@ -38,8 +65,35 @@ function SearchTable({ searchCity, setIsOpenSearch }) {
             <p>Humidity: {searchCity.current.humidity}%</p>
             <p>Cloud: {searchCity.current.cloud}%</p>
           </div>
+          <button
+            className="detailBtn"
+            id="detailbutton"
+            onClick={() => detailButton()}
+          >
+            Show Details
+          </button>
         </div>
       </div>
+      {isOpenDetail && (
+        <div className="forecastDiv">
+          {forecastCity.map((forecast) => {
+            return (
+              <div className="forecastCard" key={forecast.date_epoch}>
+                <p className="forecastText">Date:{forecast.date}</p>
+                <div className="forecastMidDiv">
+                  <img
+                    src={forecast.day.condition.icon}
+                    alt="logo"
+                    className="iconDetail"
+                  />
+                  <p className="forecastText">{forecast.day.avgtemp_c} C°</p>
+                  <p className="forecastText">{forecast.day.condition.text}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

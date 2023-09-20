@@ -2,7 +2,6 @@
   border: 3px solid rgb(30, 95, 216);
   border-radius: 20px;
   margin-top: 1.5rem;
-  height: 300px;
 }
 
 .closeBtnDiv {
@@ -42,4 +41,14 @@
 
 .infoDiv > p {
   font-size: 14pt;
+}
+
+.nextDaysDiv {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forecastDiv {
+  margin-bottom: 1rem;
 }
