@@ -28,7 +28,7 @@ function SearchBar({ getSearchCity }) {
         type="submit"
         className="inputBtn"
         onClick={() => {
-          getSearchCity("izmir");
+          getSearchCity(city);
         }}
       >
         Show Weather

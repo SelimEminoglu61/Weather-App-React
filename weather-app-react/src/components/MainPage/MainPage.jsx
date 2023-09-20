@@ -32,8 +32,9 @@ function MainPage() {
     fetchData();
   }, []);
 
-  function getSearchCity(city) {
-    setSearchCity(getBigCity(city));
+  async function getSearchCity(city) {
+    const result = await getBigCity(city);
+    setSearchCity(result);
     setIsOpenSearch(true);
   }
 
