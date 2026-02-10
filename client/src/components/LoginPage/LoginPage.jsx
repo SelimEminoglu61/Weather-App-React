@@ -3,7 +3,7 @@ import { Field } from "@base-ui/react/field";
 import { Form } from "@base-ui/react/form";
 import { Button } from "@base-ui/react/button";
 
-import styles from "./styleLoginPage.module.css";
+import styles from "../../assets/css/styleLoginPage.module.css";
 
 function LoginPage() {
   const [errors, setErrors] = useState({});
@@ -31,13 +31,22 @@ function LoginPage() {
         }}
       >
         <Field.Root name="url" className={styles.Field}>
-          <Field.Label className={styles.Label}>Homepage</Field.Label>
+          <Field.Label className={styles.Label}>Username</Field.Label>
           <Field.Control
             type="url"
             required
             defaultValue="https://example.com"
             placeholder="https://example.com"
             pattern="https?://.*"
+            className={styles.Input}
+          />
+          <Field.Error className={styles.Error} />
+          <Field.Label className={styles.Label}>Password</Field.Label>
+          <Field.Control
+            type="password"
+            required
+            placeholder="**********"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             className={styles.Input}
           />
           <Field.Error className={styles.Error} />
@@ -48,7 +57,18 @@ function LoginPage() {
           focusableWhenDisabled
           className={styles.Button}
         >
-          Submit
+          Login
+        </Button>
+        <hr />
+        <p className={styles.p}>Don't have an account?</p>
+        <Button
+          variant="outline"
+          disabled={loading}
+          focusableWhenDisabled
+          className={styles.Button}
+          onClick={() => (window.location.href = "/register")}
+        >
+          Sign Up
         </Button>
       </Form>
     </div>

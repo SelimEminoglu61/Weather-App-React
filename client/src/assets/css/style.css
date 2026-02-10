@@ -37,7 +37,7 @@
   }
   background-image: url("./images/bg.jpeg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-position: center center;
 }
 
