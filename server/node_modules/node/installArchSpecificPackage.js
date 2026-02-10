@@ -1,0 +1,1 @@
+require('node-bin-setup')("25.6.0", require)
