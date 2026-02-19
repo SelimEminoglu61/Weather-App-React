@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import BigCities from "../BigCities/BigCities";
-import getBigCity from "../../utils/Request";
-import DetailCities from "../DetailCities/DetailCities";
 import SearchTable from "../SearchTable/SearchTable";
 import "./styleMainPage.css";
 import "animate.css";
@@ -22,7 +20,7 @@ function MainPage() {
   const fetchData = async () => {
     const data = await Promise.all(bigCities.map((city) => getBigCity(city)));
     const data2 = await Promise.all(
-      turkBigCities.map((city) => getBigCity(city))
+      turkBigCities.map((city) => getBigCity(city)),
     );
     setCityData(data);
     setTurkCityData(data2);

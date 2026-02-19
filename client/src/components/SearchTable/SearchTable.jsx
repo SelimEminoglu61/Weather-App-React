@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import getForecastCity from "../../utils/RequestForecast";
+
 import "./styleSearchTable.css";
-import "../DetailCities/styleDetailCities.css";
+
 import "../BigCities/styleBigCities.css";
 import PropTypes from "prop-types";
 
