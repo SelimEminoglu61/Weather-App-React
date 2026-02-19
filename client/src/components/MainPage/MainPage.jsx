@@ -3,11 +3,17 @@ import SearchBar from "../SearchBar/SearchBar";
 import BigCities from "../BigCities/BigCities";
 import SearchTable from "../SearchTable/SearchTable";
 import "./styleMainPage.css";
+import "../../assets/css/style.css";
 import "animate.css";
 
 function MainPage() {
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const bigCities = ["London", "Washington", "Paris", "Atina", "Berlin"];
   const turkBigCities = ["İstanbul", "İzmir", "Ankara", "Trabzon", "Kocaeli"];
+  const oneCity = "İstanbul";
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [oneCityData, setOneCity] = useState({});
   const [cityData, setCityData] = useState([]);
   const [turkCityData, setTurkCityData] = useState([]);
   const [isOpenDetail, setIsOpenDetail] = useState(false);
@@ -26,8 +32,29 @@ function MainPage() {
     setTurkCityData(data2);
   };
 
+  async function takeWeather() {
+    try {
+      setLoading(true);
+
+      let x = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=Istanbul&appid=${apiKey}&units=metric`,
+      );
+
+      if (!x.ok) {
+        throw new Error("Something went wrong");
+      }
+      let y = await x.json();
+
+      setOneCity(y);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    fetchData();
+    takeWeather();
   }, []);
 
   async function getSearchCity(city) {
@@ -49,8 +76,25 @@ function MainPage() {
             setIsOpenSearch={setIsOpenSearch}
           />
         )}
+        <div className="oneCityDiv">
+          {loading && <h2>Loading...</h2>}
+          {error && <h2>{error}</h2>}
+          {!loading && !error && oneCityData !== null && (
+            <div className="oneCityCard">
+              <h2>
+                {oneCityData !== null ? `${oneCityData.name}` : "Loading..."}
+              </h2>
+              <p>{oneCityData !== null ? `${oneCityData.main.temp}°C` : ""}</p>
+              <p>
+                {oneCityData !== null ? oneCityData.weather[0].description : ""}
+              </p>
+            </div>
+          )}
+        </div>
+
         <div className="bigCities">
           <h2>Turkey Big Cities's Weather</h2>
+
           <div className="cities">
             {turkCityData.map((city, i) => (
               <BigCities

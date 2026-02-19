@@ -1,24 +1,29 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 992px;
-  margin: 0 auto;
-}
-
 .background {
-  background: rgb(54, 205, 23);
-  background: linear-gradient(
-    180deg,
-    rgba(54, 205, 23, 1) 52%,
-    rgba(238, 208, 208, 1) 100%
-  );
-  /* background-image: url("https://www-cdn.eumetsat.int/files/2020-06/ASpot_Weather.jpg");
+  background-image: url("./images/bg.jpeg");
   background-size: cover;
-  background-position: center; */
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.oneCityDiv {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.oneCityCard {
+  background-color: #289fed;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  -webkit-box-shadow:
+    5px 5px 0px 0px #289fed,
+    10px 10px 0px 0px #5fb8ff,
+    15px 15px 0px 0px #a1d8ff;
+  box-shadow:
+    5px 5px 0px 0px #289fed,
+    10px 10px 0px 0px #5fb8ff,
+    15px 15px 0px 0px #a1d8ff;
 }
 
 .titleDiv {
