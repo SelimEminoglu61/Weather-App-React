@@ -3,13 +3,29 @@
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;
-  height: 100%;
+  height: 100vh;
 }
 
 .oneCityDiv {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
+}
+
+.suggestions {
+  background-color: white;
+  border-radius: 0.5rem;
+  max-height: 150px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .oneCityCard {
@@ -36,16 +52,21 @@
   margin-top: 1.5rem;
 }
 
-.bigCities {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
+.searchInput {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  width: 200px;
 }
 
-.cities {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+.searchButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  background-color: #289fed;
+  color: white;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #5fb8ff;
 }

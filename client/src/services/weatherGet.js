@@ -1,19 +1,6 @@
 const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-export async function takeWeather(city) {
-  // Geocoding
-  const geoRes = await fetch(
-    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`,
-  );
-
-  const geoData = await geoRes.json();
-
-  if (!geoData.length) {
-    throw new Error("Şehir bulunamadı");
-  }
-
-  const { lat, lon } = geoData[0];
-
+export async function takeWeather(lat, lon) {
   // Weather Data
 
   let x = await fetch(
