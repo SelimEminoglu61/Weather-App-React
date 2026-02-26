@@ -67,6 +67,14 @@
   cursor: pointer;
 }
 
+.highlight {
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  background-color: #5fb8ff;
+  color: white;
+  cursor: pointer;
+}
+
 .searchButton:hover {
   background-color: #5fb8ff;
 }

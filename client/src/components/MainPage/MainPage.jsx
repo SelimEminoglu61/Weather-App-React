@@ -1,32 +1,51 @@
-import { useState } from "react";
-import { takeWeather } from "../../services/weatherGet.js";
+import { useEffect, useRef, useState } from "react";
+import useWeather from "../../hooks/useWeather.js";
+import useCitySearch from "../../hooks/useCitySearch.js";
 
 import "./styleMainPage.css";
 import "../../assets/css/style.css";
 import "animate.css";
 
-import useCitySearch from "../../hooks/useCitySearch.js";
-
 function MainPage() {
   const [city, setCity] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [errorWeather, setErrorWeather] = useState(null);
-  const [oneCityData, setOneCity] = useState({});
-  const [weather, setWeather] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
+
+  const wrapperRef = useRef(null);
+  const itemRefs = useRef([]);
 
   const { suggestions, searchloading, searcherror, clearSuggestions } =
     useCitySearch(city);
+  const { weather, loading, error } = useWeather(lat, lon);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (highlightIndex >= 0 && itemRefs.current[highlightIndex]) {
+      itemRefs.current[highlightIndex].scrollIntoView({
+        block: "nearest",
+        behavior: "smooth",
+      });
+    }
+  }, [highlightIndex]);
 
   const handleSearch = async (lat, lon) => {
-    try {
-      setErrorWeather(false);
-      const data = await takeWeather(lat, lon);
-      setWeather(data);
-      clearSuggestions();
-    } catch (err) {
-      setErrorWeather(err.message);
-    }
+    setLat(lat);
+    setLon(lon);
+    clearSuggestions();
+    setIsOpen(false);
   };
 
   return (
@@ -36,40 +55,76 @@ function MainPage() {
           <h1 className="bigTitle">Weather Application</h1>
         </div>
         <div className="oneCityDiv">
-          <div className="searchDiv">
+          <div className="searchDiv" ref={wrapperRef}>
             <input
               className="searchInput"
               value={city}
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setCity(value);
+                if (value.length >= 3) {
+                  setIsOpen(true);
+                } else {
+                  setIsOpen(false);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (!isOpen) return;
+
+                if (e.key === "ArrowDown") {
+                  setHighlightIndex((prev) =>
+                    prev < suggestions.length - 1 ? prev + 1 : prev,
+                  );
+                } else if (e.key === "ArrowUp") {
+                  setHighlightIndex((prev) => (prev > 0 ? prev - 1 : prev));
+                } else if (e.key === "Enter") {
+                  if (highlightIndex >= 0) {
+                    const city = suggestions[highlightIndex];
+                    setLat(city.lat);
+                    setLon(city.lon);
+                    setIsOpen(false);
+                    setHighlightIndex(-1);
+                  }
+                } else if (e.key === "Escape") {
+                  setIsOpen(false);
+                  setHighlightIndex(-1);
+                }
+              }}
             />
-            {searchloading && <div className="loading">Loading...</div>}
-            {searcherror && <div className="error">{searcherror}</div>}
-            {searcherror === "" && suggestions.length > 0 && (
-              <div className="suggestions">
-                {city.length >= 3 &&
-                  suggestions.map((sug, i) => (
-                    <button
-                      key={i}
-                      className="searchButton"
-                      onClick={() => handleSearch(sug.lat, sug.lon)}
-                    >
-                      {sug.name}, {sug.country}
-                    </button>
-                  ))}
+            {isOpen && (
+              <div className="dropDown">
+                {searchloading && <div className="loading">Loading...</div>}
+                {searcherror && <div className="error">{searcherror}</div>}
+                {suggestions.length === 0 && city.length >= 3 && (
+                  <div className="noResults">No results found</div>
+                )}
+                {searcherror === "" && suggestions.length > 0 && (
+                  <div className="suggestions">
+                    {city.length >= 3 &&
+                      suggestions.map((sug, i) => (
+                        <button
+                          key={i}
+                          ref={(el) => (itemRefs.current[i] = el)}
+                          onMouseDown={() => handleSearch(sug.lat, sug.lon)}
+                          className={
+                            highlightIndex === i ? "highlight" : "searchButton"
+                          }
+                        >
+                          {sug.name}, {sug.country}
+                        </button>
+                      ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
         </div>
-        {errorWeather && (
-          <div>
-            <h2>{errorWeather}</h2>
-          </div>
-        )}
+
         {weather && (
           <div className="oneCityDiv">
             {loading && <h2>Loading...</h2>}
             {error && <h2>{error}</h2>}
-            {!loading && !error && oneCityData !== null && (
+            {!loading && !error && weather !== null && (
               <div className="oneCityCard">
                 <h2>{weather.name}</h2>
                 <p>{weather.main.temp}°C</p>
