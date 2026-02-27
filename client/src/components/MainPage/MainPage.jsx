@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import useWeather from "../../hooks/useWeather.js";
 import useCitySearch from "../../hooks/useCitySearch.js";
 
+import { RingLoader } from "react-spinners";
+
 import "./styleMainPage.css";
 import "../../assets/css/style.css";
 import "animate.css";
+import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 
 function MainPage() {
   const [city, setCity] = useState("");
@@ -93,7 +96,11 @@ function MainPage() {
             />
             {isOpen && (
               <div className="dropDown">
-                {searchloading && <div className="loading">Loading...</div>}
+                {searchloading && (
+                  <div className="loading">
+                    <RingLoader color="#ffffff" size={20} />
+                  </div>
+                )}
                 {searcherror && <div className="error">{searcherror}</div>}
                 {suggestions.length === 0 && city.length >= 3 && (
                   <div className="noResults">No results found</div>
@@ -121,16 +128,7 @@ function MainPage() {
         </div>
 
         {weather && (
-          <div className="oneCityDiv">
-            {loading && <h2>Loading...</h2>}
-            {error && <h2>{error}</h2>}
-            {!loading && !error && weather !== null && (
-              <div className="oneCityCard">
-                <h2>{weather.name}</h2>
-                <p>{weather.main.temp}°C</p>
-              </div>
-            )}
-          </div>
+          <WeatherCard weather={weather} loading={loading} error={error} />
         )}
       </div>
     </div>

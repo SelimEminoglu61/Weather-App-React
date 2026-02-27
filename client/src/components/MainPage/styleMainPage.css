@@ -12,6 +12,17 @@
   margin: 2rem 0;
 }
 
+.dropDown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
 .suggestions {
   background-color: white;
   border-radius: 0.5rem;
@@ -21,25 +32,33 @@
   flex-direction: column;
 }
 
+.noResults {
+  display: flex;
+  justify-content: center;
+  background-color: #289fed;
+  color: gray;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  background-color: #289fed;
+  color: white;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  background-color: #289fed;
+  color: red;
+}
+
 .searchDiv {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 1rem;
-}
-
-.oneCityCard {
-  background-color: #289fed;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  -webkit-box-shadow:
-    5px 5px 0px 0px #289fed,
-    10px 10px 0px 0px #5fb8ff,
-    15px 15px 0px 0px #a1d8ff;
-  box-shadow:
-    5px 5px 0px 0px #289fed,
-    10px 10px 0px 0px #5fb8ff,
-    15px 15px 0px 0px #a1d8ff;
 }
 
 .titleDiv {

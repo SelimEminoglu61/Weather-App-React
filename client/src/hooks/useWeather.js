@@ -23,7 +23,19 @@ function useWeather(lat, lon) {
         }
 
         const data = await req.json();
-        setWeather(data);
+        const normalizedData = {
+          name: data.name,
+          country: data.sys.country,
+          temp: data.main.temp,
+          feelsLike: data.main.feels_like,
+          min: data.main.temp_min,
+          max: data.main.temp_max,
+          humidity: data.main.humidity,
+          description: data.weather[0].description,
+          icon: data.weather[0].icon,
+          windSpeed: data.wind.speed,
+        };
+        setWeather(normalizedData);
       } catch (err) {
         setError(err.message);
       } finally {
