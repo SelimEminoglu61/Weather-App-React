@@ -3,7 +3,7 @@
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;
-  height: 100vh;
+  height: 100%;
 }
 
 .oneCityDiv {
@@ -96,4 +96,13 @@
 
 .searchButton:hover {
   background-color: #5fb8ff;
+}
+
+.defaultCities {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import useDebounce from "../../hooks/useDebounce.js";
 import useWeather from "../../hooks/useWeather.js";
 import useCitySearch from "../../hooks/useCitySearch.js";
 
@@ -11,6 +12,21 @@ import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 
 function MainPage() {
   const [city, setCity] = useState("");
+  const debounceCity = useDebounce(city, 400);
+
+  const weatherIstanbul = useWeather(41.0082, 28.9784);
+  const weatherLondon = useWeather(51.5074, -0.1278);
+  const weatherNY = useWeather(40.7128, -74.006);
+  const weatherTokyo = useWeather(35.6762, 139.6503);
+  const weatherParis = useWeather(48.8566, 2.3522);
+
+  const defaultWeather = [
+    { name: "Istanbul", data: weatherIstanbul },
+    { name: "London", data: weatherLondon },
+    { name: "New York", data: weatherNY },
+    { name: "Tokyo", data: weatherTokyo },
+    { name: "Paris", data: weatherParis },
+  ];
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +36,7 @@ function MainPage() {
   const itemRefs = useRef([]);
 
   const { suggestions, searchloading, searcherror, clearSuggestions } =
-    useCitySearch(city);
+    useCitySearch(debounceCity);
   const { weather, loading, error } = useWeather(lat, lon);
 
   useEffect(() => {
@@ -130,6 +146,13 @@ function MainPage() {
         {weather && (
           <WeatherCard weather={weather} loading={loading} error={error} />
         )}
+        <div className="defaultCities">
+          {defaultWeather.map((city) => {
+            if (!city.data.weather)
+              return <div key={city.name}>Loading {city.name}...</div>;
+            return <WeatherCard key={city.name} {...city.data} />;
+          })}
+        </div>
       </div>
     </div>
   );
