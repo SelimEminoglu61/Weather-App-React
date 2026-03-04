@@ -9,8 +9,12 @@ import "./styleMainPage.css";
 import "../../assets/css/style.css";
 import "animate.css";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
+import { use } from "react";
 
 function MainPage() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
   const [city, setCity] = useState("");
   const debounceCity = useDebounce(city, 400);
 
@@ -40,6 +44,10 @@ function MainPage() {
   const { weather, loading, error } = useWeather(lat, lon);
 
   useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -67,17 +75,50 @@ function MainPage() {
     setIsOpen(false);
   };
 
+  function getBackgroundClass(weather) {
+    if (!weather) return "background";
+    console.log(weather);
+    const main = weather.main.toLowerCase();
+    if (main.includes("cloud")) return "background cloudy";
+    if (main.includes("rain") || main.includes("drizzle"))
+      return "background rainy";
+    if (main.includes("snow")) return "background snowy";
+    if (main.includes("clear")) return "background clear";
+    return "background";
+  }
+
   return (
-    <div className="background">
-      <div className="container">
+    <div className={getBackgroundClass(weather)}>
+      <header className={theme}>
         <div className="titleDiv animate__animated animate__fadeInDown">
           <h1 className="bigTitle">Weather Application</h1>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={theme === "dark"}
+              onChange={() =>
+                setTheme((prev) => (prev === "light" ? "dark" : "light"))
+              }
+            />
+            <span className="slider round">
+              <img
+                src={
+                  theme === "light" ? "./icons/light.png" : "./icons/dark.png"
+                }
+                alt="theme icon"
+                className="theme-icon"
+              />
+            </span>
+          </label>
         </div>
+      </header>
+      <div className="container">
         <div className="oneCityDiv">
           <div className="searchDiv" ref={wrapperRef}>
             <input
               className="searchInput"
               value={city}
+              placeholder="Please enter city name"
               onChange={(e) => {
                 const value = e.target.value;
                 setCity(value);
@@ -144,13 +185,18 @@ function MainPage() {
         </div>
 
         {weather && (
-          <WeatherCard weather={weather} loading={loading} error={error} />
+          <WeatherCard
+            weather={weather}
+            loading={loading}
+            error={error}
+            theme={theme}
+          />
         )}
         <div className="defaultCities">
           {defaultWeather.map((city) => {
             if (!city.data.weather)
               return <div key={city.name}>Loading {city.name}...</div>;
-            return <WeatherCard key={city.name} {...city.data} />;
+            return <WeatherCard key={city.name} {...city.data} theme={theme} />;
           })}
         </div>
       </div>

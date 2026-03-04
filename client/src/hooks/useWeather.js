@@ -34,6 +34,7 @@ function useWeather(lat, lon) {
           description: data.weather[0].description,
           icon: data.weather[0].icon,
           windSpeed: data.wind.speed,
+          main: data.weather[0].main,
         };
         setWeather(normalizedData);
       } catch (err) {

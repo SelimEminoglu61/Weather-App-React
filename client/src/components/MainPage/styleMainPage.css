@@ -6,6 +6,127 @@
   height: 100%;
 }
 
+.cloudy {
+  background-image: url("./images/cloudy.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.rainy {
+  background-image: url("./images/rainy.jpeg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.snowy {
+  background-image: url("./images/snowy.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.clear {
+  background-image: url("./images/clear.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+header {
+  position: relative;
+  background-color: #289fed;
+  width: 100%;
+}
+
+.light {
+  background-color: #289fed;
+}
+
+.dark {
+  background-color: #0e324b;
+}
+
+/* Toggle Switch CSS*/
+
+.switch {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.8rem;
+  width: 70px; /*standard+10*/
+  height: 44px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 36px;
+  width: 36px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #060707;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #060707;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.theme-icon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 20px;
+  transition: 0.4s;
+}
+
+input:checked + .slider .theme-icon {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 .oneCityDiv {
   display: flex;
   justify-content: center;
@@ -68,7 +189,7 @@
 
 .bigTitle {
   color: white;
-  margin-top: 1.5rem;
+  margin: 0.5em 0;
 }
 
 .searchInput {

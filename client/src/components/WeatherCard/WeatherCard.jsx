@@ -1,11 +1,11 @@
 import { RingLoader } from "react-spinners";
 import "./styleWeatherCard.css";
 
-function WeatherCard({ weather, loading, error }) {
+function WeatherCard({ weather, loading, error, theme }) {
   const iconUrl = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
 
   return (
-    <div className="weatherCard">
+    <div className={`weatherCard ${theme}`}>
       {loading && (
         <h2>
           <RingLoader color="#ffffff" size={20} />

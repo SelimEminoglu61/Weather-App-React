@@ -3,6 +3,7 @@
   justify-self: center;
   justify-content: center;
   background-color: #289fed;
+  gap: 1.5rem;
   border-radius: 0.5rem;
   width: 300px;
   -webkit-box-shadow:
@@ -15,10 +16,18 @@
     15px 15px 0px 0px #a1d8ff;
 }
 
+.light {
+  background-color: #289fed;
+}
+
+.dark {
+  background-color: #0e324b;
+}
+
 .weatherCardContent {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -29,7 +38,7 @@
 
 .topContent {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
 }
 .weatherState {
