@@ -9,11 +9,14 @@ import "./styleMainPage.css";
 import "../../assets/css/style.css";
 import "animate.css";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
-import { use } from "react";
 
 function MainPage() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
+  });
+  const [recentCities, setRecentCities] = useState(() => {
+    const storedCities = localStorage.getItem("recentCities");
+    return storedCities ? JSON.parse(storedCities) : [];
   });
   const [city, setCity] = useState("");
   const debounceCity = useDebounce(city, 400);
@@ -31,6 +34,7 @@ function MainPage() {
     { name: "Tokyo", data: weatherTokyo },
     { name: "Paris", data: weatherParis },
   ];
+  const [inputValue, setInputValue] = useState("");
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -68,6 +72,22 @@ function MainPage() {
     }
   }, [highlightIndex]);
 
+  useEffect(() => {
+    localStorage.setItem("recentCities", JSON.stringify(recentCities));
+  }, [recentCities]);
+
+  const addRecentCity = (city) => {
+    setRecentCities((prev) => {
+      const filtered = prev.filter(
+        (item) => item.lat !== city.lat && item.lon !== city.lon,
+      );
+
+      const updated = [city, ...filtered];
+
+      return updated.slice(0, 5);
+    });
+  };
+
   const handleSearch = async (lat, lon) => {
     setLat(lat);
     setLon(lon);
@@ -77,7 +97,7 @@ function MainPage() {
 
   function getBackgroundClass(weather) {
     if (!weather) return "background";
-    console.log(weather);
+
     const main = weather.main.toLowerCase();
     if (main.includes("cloud")) return "background cloudy";
     if (main.includes("rain") || main.includes("drizzle"))
@@ -119,8 +139,13 @@ function MainPage() {
               className="searchInput"
               value={city}
               placeholder="Please enter city name"
+              onInput={(e) => {
+                const value = e.target.value;
+                setInputValue(value);
+              }}
               onChange={(e) => {
                 const value = e.target.value;
+
                 setCity(value);
                 if (value.length >= 3) {
                   setIsOpen(true);
@@ -151,8 +176,37 @@ function MainPage() {
                 }
               }}
             />
+            {!isOpen && inputValue.length === 0 && recentCities.length > 0 && (
+              <div className="dropDown">
+                <div className="recentTitle">
+                  Recent Searches:
+                  <button onClick={() => setRecentCities([])}>clear</button>
+                </div>
+                <div className="suggestions">
+                  {recentCities.map((city, i) => (
+                    <button
+                      key={i}
+                      className="searchButton"
+                      onMouseDown={() => (
+                        addRecentCity({
+                          name: city.name,
+                          lat: city.lat,
+                          lon: city.lon,
+                          country: city.country,
+                        }),
+                        handleSearch(city.lat, city.lon)
+                      )}
+                    >
+                      {city.name}, {city.country}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {isOpen && (
               <div className="dropDown">
+                <div className="recentTitle">Suggestions:</div>
                 {searchloading && (
                   <div className="loading">
                     <RingLoader color="#ffffff" size={20} />
@@ -169,7 +223,15 @@ function MainPage() {
                         <button
                           key={i}
                           ref={(el) => (itemRefs.current[i] = el)}
-                          onMouseDown={() => handleSearch(sug.lat, sug.lon)}
+                          onMouseDown={() => (
+                            addRecentCity({
+                              name: sug.name,
+                              lat: sug.lat,
+                              lon: sug.lon,
+                              country: sug.country,
+                            }),
+                            handleSearch(sug.lat, sug.lon)
+                          )}
                           className={
                             highlightIndex === i ? "highlight" : "searchButton"
                           }

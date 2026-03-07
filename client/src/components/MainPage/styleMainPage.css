@@ -141,7 +141,7 @@ input:checked + .slider .theme-icon {
   background-color: white;
   border-radius: 0.5rem;
   max-height: 150px;
-  overflow-y: auto;
+  overflow: visible;
 }
 
 .suggestions {
@@ -151,6 +151,14 @@ input:checked + .slider .theme-icon {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+}
+
+.recentTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  color: gray;
+  font-size: 12pt;
 }
 
 .noResults {
