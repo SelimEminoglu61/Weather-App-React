@@ -9,6 +9,7 @@ import "./styleMainPage.css";
 import "../../assets/css/style.css";
 import "animate.css";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
+import FavoritesCities from "../FavoritesCities/FavoritesCities.jsx";
 
 function MainPage() {
   const [theme, setTheme] = useState(() => {
@@ -18,6 +19,11 @@ function MainPage() {
     const storedCities = localStorage.getItem("recentCities");
     return storedCities ? JSON.parse(storedCities) : [];
   });
+  const [favoriteCities, setFavoriteCities] = useState(() => {
+    const storedFavorites = localStorage.getItem("favoriteCities");
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
+
   const [city, setCity] = useState("");
   const debounceCity = useDebounce(city, 400);
 
@@ -75,6 +81,30 @@ function MainPage() {
   useEffect(() => {
     localStorage.setItem("recentCities", JSON.stringify(recentCities));
   }, [recentCities]);
+
+  useEffect(() => {
+    localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
+  }, [favoriteCities]);
+
+  const addFavorites = (favoriteCity) => {
+    setFavoriteCities((prev) => {
+      const filtered = prev.filter(
+        (item) =>
+          item.lat !== favoriteCity.lat && item.lon !== favoriteCity.lon,
+      );
+      return [...filtered, favoriteCity];
+    });
+  };
+
+  const removeFavorite = (favoriteCity) => {
+    setFavoriteCities((prev) => {
+      const removed = prev.filter(
+        (item) =>
+          item.lat !== favoriteCity.lat && item.lon !== favoriteCity.lon,
+      );
+      return removed;
+    });
+  };
 
   const addRecentCity = (city) => {
     setRecentCities((prev) => {
@@ -137,6 +167,7 @@ function MainPage() {
           <div className="searchDiv" ref={wrapperRef}>
             <input
               className="searchInput"
+              name="inputWeather"
               value={city}
               placeholder="Please enter city name"
               onInput={(e) => {
@@ -179,7 +210,21 @@ function MainPage() {
             {!isOpen && inputValue.length === 0 && recentCities.length > 0 && (
               <div className="dropDown">
                 <div className="recentTitle">
-                  Recent Searches:
+                  <span
+                    style={{
+                      marginRight: "0.3rem",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      src="./icons/glass.png"
+                      alt="Clock"
+                      width={15}
+                      style={{ marginRight: "0.3rem" }}
+                    />
+                    Recent Searches:
+                  </span>
                   <button onClick={() => setRecentCities([])}>clear</button>
                 </div>
                 <div className="suggestions">
@@ -206,7 +251,23 @@ function MainPage() {
 
             {isOpen && (
               <div className="dropDown">
-                <div className="recentTitle">Suggestions:</div>
+                <div className="suggestionTitle">
+                  <span
+                    style={{
+                      marginRight: "0.3rem",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      src="./icons/clock.png"
+                      alt="Clock"
+                      width={15}
+                      style={{ marginRight: "0.3rem" }}
+                    />
+                    Suggestions:
+                  </span>
+                </div>
                 {searchloading && (
                   <div className="loading">
                     <RingLoader color="#ffffff" size={20} />
@@ -244,21 +305,41 @@ function MainPage() {
               </div>
             )}
           </div>
+          {weather && (
+            <WeatherCard
+              weather={weather}
+              loading={loading}
+              error={error}
+              theme={theme}
+              isFavorite={favoriteCities.some(
+                (city) => city.lat === weather.lat && city.lon === weather.lon,
+              )}
+              addFavorite={addFavorites}
+              removeFavorite={removeFavorite}
+            />
+          )}
+          <FavoritesCities favoriteCities={favoriteCities} />
         </div>
 
-        {weather && (
-          <WeatherCard
-            weather={weather}
-            loading={loading}
-            error={error}
-            theme={theme}
-          />
-        )}
         <div className="defaultCities">
           {defaultWeather.map((city) => {
-            if (!city.data.weather)
+            const data = city.data;
+
+            if (!data || !data.weather)
               return <div key={city.name}>Loading {city.name}...</div>;
-            return <WeatherCard key={city.name} {...city.data} theme={theme} />;
+            return (
+              <WeatherCard
+                key={city.name}
+                {...data}
+                theme={theme}
+                isFavorite={favoriteCities.some(
+                  (favCity) =>
+                    data.lat === favCity.lat && data.lon === favCity.lon,
+                )}
+                addFavorite={addFavorites}
+                removeFavorite={removeFavorite}
+              />
+            );
           })}
         </div>
       </div>

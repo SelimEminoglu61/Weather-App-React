@@ -1,7 +1,15 @@
 import { RingLoader } from "react-spinners";
 import "./styleWeatherCard.css";
 
-function WeatherCard({ weather, loading, error, theme }) {
+function WeatherCard({
+  weather,
+  loading,
+  error,
+  theme,
+  isFavorite,
+  addFavorite,
+  removeFavorite,
+}) {
   const iconUrl = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
 
   return (
@@ -22,6 +30,13 @@ function WeatherCard({ weather, loading, error, theme }) {
               <img src={iconUrl} alt={weather.description} />
               <h2>{weather.temp}°C</h2>
             </div>
+            <button
+              onClick={() => {
+                isFavorite ? removeFavorite(weather) : addFavorite(weather);
+              }}
+            >
+              {isFavorite ? "⭐ Remove Favorite" : "☆ Add Favorite"}
+            </button>
           </div>
 
           <h3>Feels like: {weather.feelsLike}°C</h3>
