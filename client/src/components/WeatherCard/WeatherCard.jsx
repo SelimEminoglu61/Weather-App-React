@@ -13,7 +13,7 @@ function WeatherCard({
   const iconUrl = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
 
   return (
-    <div className={`weatherCard ${theme}`}>
+    <div className={theme === "light" ? `weatherCardLight` : `weatherCardDark`}>
       {loading && (
         <h2>
           <RingLoader color="#ffffff" size={20} />
@@ -22,6 +22,15 @@ function WeatherCard({
       {error && <h2 className="cardError">{error}</h2>}
       {!loading && !error && weather !== null && (
         <div className="weatherCardContent">
+          <div className="favDiv">
+            <button
+              onClick={() => {
+                isFavorite ? removeFavorite(weather) : addFavorite(weather);
+              }}
+            >
+              {isFavorite ? "⭐ Remove Favorite" : "☆ Add Favorite"}
+            </button>
+          </div>
           <div className="topContent">
             <h2>
               {weather.name}, {weather.country}
@@ -30,13 +39,6 @@ function WeatherCard({
               <img src={iconUrl} alt={weather.description} />
               <h2>{weather.temp}°C</h2>
             </div>
-            <button
-              onClick={() => {
-                isFavorite ? removeFavorite(weather) : addFavorite(weather);
-              }}
-            >
-              {isFavorite ? "⭐ Remove Favorite" : "☆ Add Favorite"}
-            </button>
           </div>
 
           <h3>Feels like: {weather.feelsLike}°C</h3>

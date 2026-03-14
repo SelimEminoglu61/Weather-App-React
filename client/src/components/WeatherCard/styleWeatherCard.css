@@ -1,35 +1,62 @@
-.weatherCard {
+.weatherCardLight {
   display: flex;
   justify-self: center;
   justify-content: center;
-  background-color: #289fed;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   gap: 1.5rem;
   border-radius: 0.5rem;
   width: 300px;
-  -webkit-box-shadow:
-    5px 5px 0px 0px #289fed,
-    10px 10px 0px 0px #5fb8ff,
-    15px 15px 0px 0px #a1d8ff;
-  box-shadow:
-    5px 5px 0px 0px #289fed,
-    10px 10px 0px 0px #5fb8ff,
-    15px 15px 0px 0px #a1d8ff;
+  padding: 1rem;
+}
+
+.weatherCardDark {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+  width: 300px;
+  padding: 1rem;
 }
 
 .light {
-  background-color: #289fed;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .dark {
-  background-color: #0e324b;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .weatherCardContent {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  padding: 0.5rem;
+  gap: 1rem;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.favDiv {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.favDiv button {
+  background: none;
+  border: yellow solid 1px;
+  border-radius: 1rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .cardError {

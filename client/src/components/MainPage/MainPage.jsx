@@ -318,7 +318,13 @@ function MainPage() {
               removeFavorite={removeFavorite}
             />
           )}
-          <FavoritesCities favoriteCities={favoriteCities} />
+          <FavoritesCities
+            favoriteCities={favoriteCities}
+            clearFavorites={() => {
+              setFavoriteCities([]);
+            }}
+            onSelect={handleSearch}
+          />
         </div>
 
         <div className="defaultCities">

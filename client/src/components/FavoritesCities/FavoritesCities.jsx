@@ -1,12 +1,19 @@
-function FavoritesCities({ favoriteCities }) {
+import "./styleFavoritesCities.css";
+
+function FavoritesCities({ favoriteCities, clearFavorites, onSelect }) {
   return (
-    <div>
-      <h1>FavoritesCities</h1>
+    <div className="favoritesCities">
+      <div>
+        <h1>Favorites Cities</h1>
+        <button className="clearFavoritesButton" onClick={clearFavorites}>
+          Clear Favorites
+        </button>
+      </div>
       {favoriteCities.map((city) => (
         <div key={`${city.lat}-${city.lon}`}>
-          <h2>
+          <button onClick={() => onSelect(city.lat, city.lon)}>
             {city.name}, {city.country}
-          </h2>
+          </button>
         </div>
       ))}
     </div>

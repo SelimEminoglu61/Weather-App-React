@@ -1,0 +1,11 @@
+.favoritesCities {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  border: black solid 1px;
+}
+.favoritesCities h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
