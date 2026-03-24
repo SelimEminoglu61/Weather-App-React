@@ -10,6 +10,7 @@
   border-radius: 0.5rem;
   width: 300px;
   padding: 1rem;
+  color: var(--color-lightText);
 }
 
 .weatherCardDark {
@@ -24,21 +25,14 @@
   border-radius: 0.5rem;
   width: 300px;
   padding: 1rem;
-}
-
-.light {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-.dark {
-  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--color-text);
 }
 
 .weatherCardContent {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -46,21 +40,19 @@
 .favDiv {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.5rem;
   width: 100%;
 }
 
 .favDiv button {
-  background: none;
-  border: yellow solid 1px;
+  background: var(--color-lightBackground);
+  border: rgb(233, 233, 30) solid 1px;
   border-radius: 1rem;
-  padding: 0.5rem 0.5rem;
-  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
 }
 
 .cardError {
-  color: red;
+  color: var(--color-error);
 }
 
 .topContent {

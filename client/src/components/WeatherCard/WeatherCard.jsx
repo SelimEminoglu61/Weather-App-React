@@ -11,6 +11,16 @@ function WeatherCard({
   removeFavorite,
 }) {
   const iconUrl = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
+  const handleFavorite = () => {
+    const city = {
+      lat: weather.lat,
+      lon: weather.lon,
+      name: weather.name,
+      country: weather.country,
+    };
+
+    isFavorite ? removeFavorite(city) : addFavorite(city);
+  };
 
   return (
     <div className={theme === "light" ? `weatherCardLight` : `weatherCardDark`}>
@@ -23,12 +33,12 @@ function WeatherCard({
       {!loading && !error && weather !== null && (
         <div className="weatherCardContent">
           <div className="favDiv">
-            <button
-              onClick={() => {
-                isFavorite ? removeFavorite(weather) : addFavorite(weather);
-              }}
-            >
-              {isFavorite ? "⭐ Remove Favorite" : "☆ Add Favorite"}
+            <button onClick={handleFavorite}>
+              {isFavorite ? (
+                <img src="./icons/star-full.png" />
+              ) : (
+                <img src="./icons/star-empty.png" />
+              )}
             </button>
           </div>
           <div className="topContent">

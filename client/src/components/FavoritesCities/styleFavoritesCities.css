@@ -1,11 +1,90 @@
-.favoritesCities {
+.favoritesCitiesLight {
   margin-top: 2rem;
   padding: 1rem;
-  background-color: #f0f0f0;
+  color: var(--color-lightText);
+  background-color: var(--color-lightBackground);
   border-radius: 8px;
   border: black solid 1px;
+  width: 300px;
+  min-height: 300px;
 }
-.favoritesCities h1 {
+
+.favoritesCitiesDark {
+  margin-top: 2rem;
+  padding: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border-radius: 8px;
+  border: black solid 1px;
+  width: 300px;
+  min-height: 300px;
+}
+
+h1 {
   text-align: center;
   margin-bottom: 1rem;
+}
+
+.emptyListDark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  min-height: 100px;
+}
+
+.emptyListLight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-lightText);
+  min-height: 100px;
+}
+
+.favoriteTitle {
+  font-size: 13pt;
+}
+
+.clearFavoriteDiv {
+  display: flex;
+  justify-content: end;
+}
+
+.clearFavoritesButton {
+  border: var(--color-primary) solid 1px;
+  background-color: var(--color-primary);
+  border-radius: 1rem;
+  padding: 0.5rem 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clearFavoritesButton:hover {
+  background-color: var(--color-secondary);
+}
+
+.favoritesList {
+  margin-top: 1rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.favoritesCityButton {
+  border: var(--color-accent) solid 2px;
+  border-radius: 10px;
+  width: 100%;
+  padding: 0.3rem;
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.favoritesCityButton:hover {
+  background-color: var(--color-secondary);
+}
+
+.favoriteListNumber {
+  margin-right: 0.1rem;
+  font-size: 14pt;
+  font-weight: 600;
 }

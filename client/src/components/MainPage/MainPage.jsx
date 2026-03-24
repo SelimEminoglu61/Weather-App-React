@@ -139,7 +139,7 @@ function MainPage() {
 
   return (
     <div className={getBackgroundClass(weather)}>
-      <header className={theme}>
+      <header>
         <div className="titleDiv animate__animated animate__fadeInDown">
           <h1 className="bigTitle">Weather Application</h1>
           <label className="switch">
@@ -324,6 +324,7 @@ function MainPage() {
               setFavoriteCities([]);
             }}
             onSelect={handleSearch}
+            theme={theme}
           />
         </div>
 
@@ -336,11 +337,14 @@ function MainPage() {
             return (
               <WeatherCard
                 key={city.name}
-                {...data}
+                weather={data.weather}
+                loading={data.loading}
+                error={data.error}
                 theme={theme}
                 isFavorite={favoriteCities.some(
                   (favCity) =>
-                    data.lat === favCity.lat && data.lon === favCity.lon,
+                    data.weather.lat === favCity.lat &&
+                    data.weather.lon === favCity.lon,
                 )}
                 addFavorite={addFavorites}
                 removeFavorite={removeFavorite}

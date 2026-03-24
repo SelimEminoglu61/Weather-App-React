@@ -40,16 +40,8 @@
 
 header {
   position: relative;
-  background-color: #289fed;
+  background-color: var(--color-primary);
   width: 100%;
-}
-
-.light {
-  background-color: #289fed;
-}
-
-.dark {
-  background-color: #0e324b;
 }
 
 /* Toggle Switch CSS*/
@@ -131,7 +123,7 @@ input:checked + .slider .theme-icon {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
-  gap: 5rem;
+  gap: 1rem;
 }
 
 .searchDiv {
@@ -139,7 +131,6 @@ input:checked + .slider .theme-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 1rem;
   width: 300px;
 }
 
@@ -191,22 +182,22 @@ input:checked + .slider .theme-icon {
 .noResults {
   display: flex;
   justify-content: center;
-  background-color: #289fed;
+  background-color: var(--color-primary);
   color: gray;
 }
 
 .loading {
   display: flex;
   justify-content: center;
-  background-color: #289fed;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .error {
   display: flex;
   justify-content: center;
-  background-color: #289fed;
-  color: red;
+  background-color: var(--color-primary);
+  color: var(--color-error);
 }
 
 .titleDiv {
@@ -215,28 +206,28 @@ input:checked + .slider .theme-icon {
 }
 
 .bigTitle {
-  color: white;
+  color: var(--color-text);
   margin: 0.5em 0;
 }
 
 .searchButton {
   padding: 0.5rem 1rem;
   border: 1px solid black;
-  background-color: #289fed;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text);
   cursor: pointer;
 }
 
 .highlight {
   padding: 0.5rem 1rem;
   border: 1px solid black;
-  background-color: #5fb8ff;
-  color: white;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
   cursor: pointer;
 }
 
 .searchButton:hover {
-  background-color: #5fb8ff;
+  background-color: var(--color-secondary);
 }
 
 .defaultCities {

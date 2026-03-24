@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 :root {
+  --color-primary: #3b82f6;
+  --color-secondary: #6366f1;
+  --color-background: #0f172a;
+  --color-text: #f1f5f9;
+  --color-subtext: #94a3b8;
+  --color-accent: #22c55e;
+  --color-lightBackground: #f8fafc;
+  --color-lightText: #0f172a;
+  --color-error: rgb(175, 22, 22);
+
   --color-blue: oklch(45% 50% 264deg);
   --color-red: oklch(50% 55% 31deg);
 
