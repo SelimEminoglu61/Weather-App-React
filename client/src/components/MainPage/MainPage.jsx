@@ -208,7 +208,7 @@ function MainPage() {
               }}
             />
             {!isOpen && inputValue.length === 0 && recentCities.length > 0 && (
-              <div className="dropDown">
+              <div className={`dropDown ${isOpen ? "open" : ""}`}>
                 <div className="recentTitle">
                   <span
                     style={{
@@ -250,7 +250,7 @@ function MainPage() {
             )}
 
             {isOpen && (
-              <div className="dropDown">
+              <div className={`dropDown ${isOpen ? "open" : ""}`}>
                 <div className="suggestionTitle">
                   <span
                     style={{

@@ -152,6 +152,14 @@ input:checked + .slider .theme-icon {
   border-radius: 0.5rem;
   max-height: 150px;
   overflow: visible;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
+
+.dropDown.open {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .suggestions {

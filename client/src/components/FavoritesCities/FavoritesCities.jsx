@@ -1,3 +1,4 @@
+import React from "react";
 import "./styleFavoritesCities.css";
 
 function FavoritesCities({
@@ -50,4 +51,4 @@ function FavoritesCities({
   );
 }
 
-export default FavoritesCities;
+export default React.memo(FavoritesCities);
