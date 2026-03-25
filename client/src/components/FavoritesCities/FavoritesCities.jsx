@@ -41,7 +41,7 @@ function FavoritesCities({
                 className="removeCityButton"
                 onClick={() => removeFavorite(city)}
               >
-                <img src="./icons/remove.png" alt="removeFavorite" />
+                <img src="/icons/remove.png" alt="removeFavorite" />
               </button>
             </div>
           ))}

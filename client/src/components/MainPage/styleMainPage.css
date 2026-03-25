@@ -1,5 +1,5 @@
 .background {
-  background-image: url("./images/bg.jpeg");
+  background-image: url("/images/bg.jpeg");
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;
@@ -7,7 +7,7 @@
 }
 
 .cloudy {
-  background-image: url("./images/cloudy.jpg");
+  background-image: url("/images/cloudy.jpg");
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;
@@ -15,7 +15,7 @@
 }
 
 .rainy {
-  background-image: url("./images/rainy.jpeg");
+  background-image: url("/images/rainy.jpeg");
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;
@@ -23,7 +23,7 @@
 }
 
 .snowy {
-  background-image: url("./images/snowy.jpg");
+  background-image: url("/images/snowy.jpg");
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;
@@ -31,7 +31,7 @@
 }
 
 .clear {
-  background-image: url("./images/clear.jpg");
+  background-image: url("/images/clear.jpg");
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center center;

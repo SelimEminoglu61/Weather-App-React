@@ -41,12 +41,12 @@ function WeatherCard({
                 <button onClick={handleFavorite}>
                   {isFavorite ? (
                     <img
-                      src="./icons/star-full.png"
+                      src="/icons/star-full.png"
                       alt="fullStar"
                       className="fullStar"
                     />
                   ) : (
-                    <img src="./icons/star-empty.png" alt="emptyStar" />
+                    <img src="/icons/star-empty.png" alt="emptyStar" />
                   )}
                 </button>
               </div>

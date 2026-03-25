@@ -152,9 +152,7 @@ function MainPage() {
             />
             <span className="slider round">
               <img
-                src={
-                  theme === "light" ? "./icons/light.png" : "./icons/dark.png"
-                }
+                src={theme === "light" ? "/icons/light.png" : "/icons/dark.png"}
                 alt="theme icon"
                 className="theme-icon"
               />
@@ -218,7 +216,7 @@ function MainPage() {
                     }}
                   >
                     <img
-                      src="./icons/glass.png"
+                      src="/icons/glass.png"
                       alt="Clock"
                       width={15}
                       style={{ marginRight: "0.3rem" }}
@@ -260,7 +258,7 @@ function MainPage() {
                     }}
                   >
                     <img
-                      src="./icons/clock.png"
+                      src="/icons/clock.png"
                       alt="Clock"
                       width={15}
                       style={{ marginRight: "0.3rem" }}
