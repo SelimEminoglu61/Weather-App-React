@@ -1,0 +1,135 @@
+.cardWrapper {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.weatherCardLight {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+  width: 300px;
+  padding: 1rem;
+  color: var(--color-lightText);
+  transition: all 0.3ms ease;
+}
+
+.weatherCardDark {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+  width: 300px;
+  padding: 1rem;
+  color: var(--color-text);
+  transition: all 0.3ms ease;
+}
+
+.weatherCardLight:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.weatherCardDark:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.weatherCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favDiv {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.favDiv button {
+  background: var(--color-lightBackground);
+  border: rgb(233, 233, 30) solid 1px;
+  border-radius: 1rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.fullStar {
+  transform: scale(1.2);
+}
+
+.cardError {
+  color: var(--color-error);
+}
+
+.topContent {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.tempTitleLight {
+  display: inline-block;
+  font-size: 30pt;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    180deg,
+    var(--color-lightText) 0%,
+    #6d7a74 50%,
+    #383830 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.tempTitleDark {
+  display: inline-block;
+  font-size: 30pt;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    180deg,
+    #686862 0%,
+    #d0d8d4 50%,
+    #75756e 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.cityName {
+  font-size: 20pt;
+}
+
+.weatOtherThing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.weatherState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
