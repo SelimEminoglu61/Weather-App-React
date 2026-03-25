@@ -1,6 +1,12 @@
 import "./styleFavoritesCities.css";
 
-function FavoritesCities({ favoriteCities, clearFavorites, onSelect, theme }) {
+function FavoritesCities({
+  favoriteCities,
+  clearFavorites,
+  onSelect,
+  theme,
+  removeFavorite,
+}) {
   return (
     <div
       className={
@@ -29,6 +35,12 @@ function FavoritesCities({ favoriteCities, clearFavorites, onSelect, theme }) {
                 onClick={() => onSelect(city.lat, city.lon)}
               >
                 {city.name}, {city.country}
+              </button>
+              <button
+                className="removeCityButton"
+                onClick={() => removeFavorite(city)}
+              >
+                <img src="./icons/remove.png" alt="removeFavorite" />
               </button>
             </div>
           ))}

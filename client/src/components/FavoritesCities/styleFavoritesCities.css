@@ -1,5 +1,5 @@
 .favoritesCitiesLight {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   color: var(--color-lightText);
   background-color: var(--color-lightBackground);
@@ -10,7 +10,7 @@
 }
 
 .favoritesCitiesDark {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   color: var(--color-text);
   background-color: var(--color-background);
@@ -87,4 +87,13 @@ h1 {
   margin-right: 0.1rem;
   font-size: 14pt;
   font-weight: 600;
+}
+
+.removeCityButton {
+  height: 100%;
+  background: none;
+  cursor: pointer;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
 }

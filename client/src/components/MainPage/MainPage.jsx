@@ -325,6 +325,7 @@ function MainPage() {
             }}
             onSelect={handleSearch}
             theme={theme}
+            removeFavorite={removeFavorite}
           />
         </div>
 
