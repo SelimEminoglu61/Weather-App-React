@@ -1,24 +1,211 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 992px;
-  margin: 0 auto;
-}
-
 .background {
-  background: rgb(54, 205, 23);
-  background: linear-gradient(
-    180deg,
-    rgba(54, 205, 23, 1) 52%,
-    rgba(238, 208, 208, 1) 100%
-  );
-  /* background-image: url("https://www-cdn.eumetsat.int/files/2020-06/ASpot_Weather.jpg");
+  background-image: url("./images/bg.jpeg");
   background-size: cover;
-  background-position: center; */
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.cloudy {
+  background-image: url("./images/cloudy.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.rainy {
+  background-image: url("./images/rainy.jpeg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.snowy {
+  background-image: url("./images/snowy.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+.clear {
+  background-image: url("./images/clear.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center center;
+  height: 100%;
+}
+
+header {
+  position: relative;
+  background-color: var(--color-primary);
+  width: 100%;
+}
+
+/* Toggle Switch CSS*/
+
+.switch {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.8rem;
+  width: 70px; /*standard+10*/
+  height: 44px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 36px;
+  width: 36px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #060707;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #060707;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.theme-icon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 20px;
+  transition: 0.4s;
+}
+
+input:checked + .slider .theme-icon {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.oneCityDiv {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+.searchDiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+}
+
+.searchInput {
+  position: absolute;
+  top: 1rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  height: 2rem;
+  width: 300px;
+}
+
+.dropDown {
+  position: absolute;
+  top: 3rem;
+  width: 300px;
+  background-color: white;
+  border-radius: 0.5rem;
+  max-height: 150px;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
+
+.dropDown.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.suggestions {
+  background-color: white;
+  border-radius: 0.5rem;
+  max-height: 150px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.recentTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  color: gray;
+  font-size: 12pt;
+}
+
+.suggestionTitle {
+  display: flex;
+  padding: 0 0.5rem;
+  color: gray;
+  font-size: 12pt;
+}
+
+.noResults {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: gray;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-error);
 }
 
 .titleDiv {
@@ -27,20 +214,35 @@
 }
 
 .bigTitle {
-  color: white;
-  margin-top: 1.5rem;
+  color: var(--color-text);
+  margin: 0.5em 0;
 }
 
-.bigCities {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
+.searchButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  cursor: pointer;
 }
 
-.cities {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+.highlight {
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: var(--color-secondary);
+}
+
+.defaultCities {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  justify-self: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 7rem;
 }

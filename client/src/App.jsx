@@ -1,8 +1,8 @@
-import Router from "./routes/Router";
+import MainPage from "./components/MainPage/MainPage";
 import "./assets/css/style.css";
 
 function App() {
-  return <Router />;
+  return <MainPage />;
 }
 
 export default App;
