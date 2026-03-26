@@ -39,17 +39,22 @@
 }
 
 header {
-  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
   background-color: var(--color-primary);
   width: 100%;
+}
+
+.themeToggle {
+  flex-shrink: 0;
 }
 
 /* Toggle Switch CSS*/
 
 .switch {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.8rem;
+  position: relative;
+  display: inline-block;
   width: 70px; /*standard+10*/
   height: 44px;
 }
@@ -122,6 +127,7 @@ input:checked + .slider .theme-icon {
 .oneCityDiv {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin: 2rem 0;
   gap: 1rem;
 }
@@ -210,7 +216,9 @@ input:checked + .slider .theme-icon {
 
 .titleDiv {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .bigTitle {
@@ -245,4 +253,18 @@ input:checked + .slider .theme-icon {
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 7rem;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 785px) {
+  .searchInput {
+    position: relative;
+    margin-bottom: 13rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .bigTitle {
+    font-size: 20pt;
+  }
 }

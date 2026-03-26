@@ -140,24 +140,28 @@ function MainPage() {
   return (
     <div className={getBackgroundClass(weather)}>
       <header>
-        <div className="titleDiv animate__animated animate__fadeInDown">
+        <div className="titleDiv">
           <h1 className="bigTitle">Weather Application</h1>
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={theme === "dark"}
-              onChange={() =>
-                setTheme((prev) => (prev === "light" ? "dark" : "light"))
-              }
-            />
-            <span className="slider round">
-              <img
-                src={theme === "light" ? "/icons/light.png" : "/icons/dark.png"}
-                alt="theme icon"
-                className="theme-icon"
+          <div className="themeToggle">
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={theme === "dark"}
+                onChange={() =>
+                  setTheme((prev) => (prev === "light" ? "dark" : "light"))
+                }
               />
-            </span>
-          </label>
+              <span className="slider round">
+                <img
+                  src={
+                    theme === "light" ? "/icons/light.png" : "/icons/dark.png"
+                  }
+                  alt="theme icon"
+                  className="theme-icon"
+                />
+              </span>
+            </label>
+          </div>
         </div>
       </header>
       <div className="container">
